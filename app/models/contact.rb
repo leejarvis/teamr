@@ -6,7 +6,8 @@ class Contact < ActiveRecord::Base
     team = project.teams(true).order('last_assigned_contact_at ASC').first
     if team && (user = team.user)
       self.assigned_users << user
-      team.update_attribute(:last_assigned_contact_at, Time.now)
+      team.send(:write_attribute, :last_assigned_contact_at, Time.current)
+      team.save
     end
   end
 end

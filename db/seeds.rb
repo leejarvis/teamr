@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 project = Project.create(name: 'Project 1')
 
-[{name: 'Lee'}, {name: 'John'}].each do |values|
+[{name: 'Lee'}, {name: 'John'}, {name: 'James'}].each do |values|
   user = User.new(values)
   user.projects << project
   user.save
@@ -22,3 +22,7 @@ end
 Contact.all.each do |c|
   puts "#{c.name} was assigned #{c.assigned_users.map(&:name).join(', ')}"
 end
+
+Project.delete_all
+Contact.delete_all
+User.delete_all
